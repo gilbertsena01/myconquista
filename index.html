@@ -7,19 +7,63 @@
   <style>
     body { font-family: Arial, sans-serif; text-align: center; margin: 20px; }
     #logo { max-width: 200px; }
-    #board { display: grid; grid-template-columns: repeat(3, 100px); grid-gap: 5px; justify-content: center; margin: 20px auto; }
-    .cell { width: 100px; height: 100px; background: #f0f0f0; display: flex; align-items: center; justify-content: center; font-size: 2em; cursor: pointer; }
+    h1 .my { color: gray; }
+    h1 .conquista { color: #003366; }
+    #board {
+      display: grid;
+      grid-template-columns: repeat(3, 100px);
+      grid-gap: 5px;
+      justify-content: center;
+      margin: 20px auto;
+    }
+    .cell {
+      width: 100px;
+      height: 100px;
+      background: #f0f0f0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2em;
+      cursor: pointer;
+    }
     #controls { margin: 10px; }
-    #links a { margin: 0 10px; text-decoration: none; color: #0066cc; }
+    #links a {
+      margin: 0 10px;
+      text-decoration: none;
+      color: #0066cc;
+      display: inline-flex;
+      align-items: center;
+    }
     #links a:hover { text-decoration: underline; }
-    #regras { margin-top: 30px; text-align: left; display: inline-block; }
+    #links .icon { width: 24px; height: 24px; margin-right: 5px; }
+    #regras {
+      margin-top: 30px;
+      text-align: left;
+      display: inline-block;
+    }
     #regras h2 { margin-bottom: 10px; }
-    #regras ol { padding-left: 20px; }
+    #regras ol {
+      list-style: none;
+      padding-left: 0;
+    }
+    #regras .numero {
+      font-weight: bold;
+      margin-right: 5px;
+    }
+    #regras .numero1 { color: red; }
+    #regras .numero2 { color: yellow; }
+    #footer {
+      margin-top: 30px;
+      font-size: 0.9em;
+      color: #555;
+    }
   </style>
 </head>
 <body>
   <img id="logo" src="logo.png" alt="Logo My Conquista">
-  <h1>My Conquista</h1>
+
+  <h1><span class="my">My</span> <span class="conquista">Conquista</span></h1>
+
   <div id="board">
     <div class="cell" data-cell></div>
     <div class="cell" data-cell></div>
@@ -31,20 +75,32 @@
     <div class="cell" data-cell></div>
     <div class="cell" data-cell></div>
   </div>
+
   <div id="controls">
     <button id="restartButton">Reiniciar Jogo</button>
   </div>
+
   <div id="links">
-    <a href="https://play.google.com/store" target="_blank" rel="noopener">Google Play Store</a>
-    <a href="https://www.roblox.com" target="_blank" rel="noopener">Roblox</a>
+    <a href="https://play.google.com/store" target="_blank" rel="noopener">
+      <img src="play.png" alt="Google Play Store" class="icon">
+      Google Play Store
+    </a>
+    <a href="https://www.roblox.com" target="_blank" rel="noopener">
+      <img src="roblox.png" alt="Roblox" class="icon">
+      Roblox
+    </a>
   </div>
+
   <div id="regras">
     <h2>Regras de Acesso</h2>
     <ol>
-      <li>Só será possível acessar o app com um responsável.</li>
-      <li>Só podem baixar o app crianças que estudam no Colégio Alfa.</li>
+      <li><span class="numero numero1">1</span>Só será possível acessar o app com um responsável.</li>
+      <li><span class="numero numero2">2</span>Só podem baixar o app crianças que estudam no Colégio Alfa.</li>
     </ol>
   </div>
+
+  <p id="footer">Criado por João Hilbert</p>
+
   <script>
     const X_CLASS = 'x';
     const O_CLASS = 'o';
@@ -99,18 +155,19 @@
     }
 
     function checkWin(currentClass) {
-      return WINNING_COMBINATIONS.some(combination => {
-        return combination.every(index => {
-          return cellElements[index].classList.contains(currentClass);
-        });
-      });
+      return WINNING_COMBINATIONS.some(combination =>
+        combination.every(index =>
+          cellElements[index].classList.contains(currentClass)
+        )
+      );
     }
 
     function isDraw() {
-      return [...cellElements].every(cell => {
-        return cell.classList.contains(X_CLASS) || cell.classList.contains(O_CLASS);
-      });
+      return [...cellElements].every(cell =>
+        cell.classList.contains(X_CLASS) || cell.classList.contains(O_CLASS)
+      );
     }
   </script>
 </body>
 </html>
+
