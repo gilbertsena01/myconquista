@@ -57,10 +57,15 @@
       font-size: 0.9em;
       color: #555;
     }
+    /* Oculta o player de áudio, mantendo apenas a reprodução */
+    #bgMusic { display: none; }
   </style>
 </head>
 <body>
   <img id="logo" src="logo.png" alt="Logo My Conquista">
+
+  <!-- Player de música de fundo (arquivo musica.mp3 na raiz) -->
+  <audio id="bgMusic" src="musica.mp3" autoplay loop></audio>
 
   <h1><span class="my">My</span> <span class="conquista">Conquista</span></h1>
 
@@ -170,4 +175,3 @@
   </script>
 </body>
 </html>
-
